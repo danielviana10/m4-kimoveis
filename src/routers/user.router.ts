@@ -1,9 +1,15 @@
 import { Router } from "express";
 import { userController } from "../controllers";
-import { verifyIdExists } from "../middlewares";
+import { ensureTokenAdmin, ensureTokenIsValid, validateBody, verifyIdExists } from "../middlewares";
+import { userUpdateSchema } from "../schemas/user.schemas";
 
 export const userRouter: Router = Router();
 
 userRouter.post("", userController.create);
-userRouter.get("", userController.read)
-userRouter.delete("/:id", verifyIdExists, userController.destroy)
+
+userRouter.get("", ensureTokenIsValid, ensureTokenAdmin, userController.read);
+
+userRouter.use("/:id", ensureTokenIsValid, ensureTokenAdmin)
+userRouter.patch("/:id", validateBody(userUpdateSchema), userController.partialUpdate)
+
+userRouter.delete("/:id",  verifyIdExists, userController.destroy)

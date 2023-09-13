@@ -1,5 +1,5 @@
 import { hashSync } from "bcryptjs";
-import { UserCreate, UserRead, UserReturn } from "../interfaces";
+import { UserCreate, UserRead, UserReturn, UserUpdate } from "../interfaces";
 import { userRepo } from "../repositories";
 import { userReadSchema, userReturnSchema } from "../schemas/user.schemas";
 import { User } from "../entities/User.entity";
@@ -14,8 +14,12 @@ const read = async (): Promise<any> => {
     return userReadSchema.parse(await userRepo.find());
 };
 
+const partialUpdate = async (user: User, payload: UserUpdate): Promise<User> => {
+    return await userRepo.save({ ...user, ...payload });
+};
+
 const destroy = async (user: User): Promise<void> => {
     await userRepo.softRemove(user)
 }
 
-export default { create, read, destroy }
+export default { create, read, partialUpdate, destroy }
