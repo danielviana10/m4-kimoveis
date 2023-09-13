@@ -8,8 +8,6 @@ export const verifyIdExists = async (req: Request, res: Response, next: NextFunc
 
   const foundUser: User | null = await userRepo.findOneBy({ id });
 
-  console.log("funcionei")
-
   if(!foundUser){
     throw new AppError("User not found", 404);
   };
