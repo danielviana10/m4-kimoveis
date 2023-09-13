@@ -8,16 +8,16 @@ const realEstateSchema = z.object({
     sold: z.boolean().default(false),
     value: z.number().default(0),
     size: z.number(),
-    createAt: z.string(),
-    updateAt: z.string(),
+    createdAt: z.string(),
+    updatedAt: z.string(),
     address: addressCreateSchema.array(),
     category: categoryCreateSchema.array()
 });
 
 const realEstateCreateSchema = realEstateSchema.omit({
     id: true,
-    createAt: true,
-    updateAt: true
+    createdAt: true,
+    updatedAt: true
 }).extend({
     address: addressCreateSchema.array(),
     category: categoryCreateSchema.array()
