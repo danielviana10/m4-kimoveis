@@ -5,7 +5,7 @@ import { sign } from "jsonwebtoken";
 import { User } from "../entities/User.entity";
 import { userRepo } from "../repositories";
 
-const login = async (payload: LoginRequest): Promise<string> => {
+const session = async (payload: LoginRequest): Promise<string> => {
 
 
     const foundUser: User | null = await userRepo.findOneBy({ email: payload.email });
@@ -32,4 +32,4 @@ const login = async (payload: LoginRequest): Promise<string> => {
     return token
 };
 
-export default login;
+export default session;
