@@ -1,8 +1,8 @@
 import { Router } from "express";
 import { categoryController } from "../controllers";
-import { verifyToCreate } from "../middlewares";
+import middlewares from "../middlewares";
 
 export const categoryRouter: Router = Router();
 
-categoryRouter.post("", verifyToCreate, categoryController.create);
+categoryRouter.post("", middlewares.verifyToCreate, categoryController.create);
 categoryRouter.get("", categoryController.read)

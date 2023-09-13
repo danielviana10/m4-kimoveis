@@ -3,7 +3,7 @@ import 'express-async-errors';
 import express, { Application } from 'express';
 import { categoryRouter, loginRouter, userRouter } from './routers';
 import { scheduleRouter } from './routers/schedule.router';
-import { handleErrors } from './middlewares';
+import middlewares from './middlewares';
 import { categoryController } from './controllers';
 
 const app: Application = express();
@@ -14,6 +14,6 @@ app.use("/schedules", scheduleRouter)
 app.use("/categories", categoryRouter)
 app.use("/login", loginRouter)
 
-app.use(handleErrors);
+app.use(middlewares.handleErrors);
 
 export default app;
