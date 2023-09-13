@@ -5,7 +5,7 @@ const scheduleSchema = z.object({
     id: z.number().positive(),
     date: z.string(),
     hour: z.string(),
-    user: userReturnSchema,
+    user: userReturnSchema
 });
 
 const scheduleCreateSchema = scheduleSchema.omit({

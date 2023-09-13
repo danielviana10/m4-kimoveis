@@ -1,7 +1,8 @@
 import { Column, CreateDateColumn, DeleteDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 import { Schedule } from "./Schedules.entity";
+import { RealEstate } from "./RealEstates.entity";
 
-@Entity('users')
+@Entity('User')
 export class User {
     @PrimaryGeneratedColumn("increment")
     id: number;
@@ -26,8 +27,5 @@ export class User {
 
     @DeleteDateColumn({ type: "date"})
 	deleteAt: string | null;
-
-    @OneToMany(() => Schedule, (s) => s.user)
-    schedules: Array<Schedule>
 
 }

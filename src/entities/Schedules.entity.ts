@@ -1,17 +1,21 @@
 import { Column, CreateDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 import { User } from "./User.entity";
+import { RealEstate } from "./RealEstates.entity";
 
-@Entity("schedules")
+@Entity("Schedule")
 export class Schedule {
     @PrimaryGeneratedColumn("increment")
     id: number;
 
-    @CreateDateColumn({ type: "date" })
+    @Column({ type: "date" })
 	date: string;
 
-    @Column()
-	hour: string;
+    @Column({ type: "date" })
+	hour: string ;
 
-    @ManyToOne(() => User, (u) => u.schedules)
+    @ManyToOne(() => RealEstate, (rs) => rs.schedules)
+    realEstate: RealEstate;
+
+    @ManyToOne(() => User)
     user: User;
 }
