@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { userReturnSchema, userSchema } from "./user.schemas";
+import { userReturnSchema } from "./user.schemas";
 
 const scheduleSchema = z.object({
     id: z.number().positive(),
