@@ -1,7 +1,7 @@
 import { hashSync } from "bcryptjs";
 import { UserCreate, UserRead, UserReturn, UserUpdate } from "../interfaces";
 import { userRepo } from "../repositories";
-import { userReadSchema, userReturnSchema } from "../schemas/user.schemas";
+import { userCreateSchema, userGetSchema, userReadSchema, userReturnSchema } from "../schemas/user.schemas";
 import { User } from "../entities/User.entity";
 
 const create = async (payload: UserCreate): Promise<UserReturn> => {

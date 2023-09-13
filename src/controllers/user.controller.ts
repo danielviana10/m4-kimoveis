@@ -1,7 +1,6 @@
 import { Request, Response } from "express";
 import { userServices } from "../services";
-import { UserReturn } from "../interfaces";
-import { User } from "../entities";
+import { UserRead, UserReturn } from "../interfaces";
 
 const create = async (req: Request, res: Response): Promise<Response> => {
     const user: UserReturn = await userServices.create(req.body)
@@ -10,7 +9,7 @@ const create = async (req: Request, res: Response): Promise<Response> => {
 }
 
 const read = async (req: Request, res: Response): Promise<Response> => {
-    const user = await userServices.read();
+    const user: UserRead = await userServices.read();
 
     return res.status(200).json(user)
 }

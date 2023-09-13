@@ -20,12 +20,12 @@ export class User {
     admin: boolean;
 
     @CreateDateColumn({ type: "date"})
-	createAt: string;
+	createdAt: string;
 
     @UpdateDateColumn({ type: "date" })
-	updateAt: string;
+	updatedAt: string;
 
     @DeleteDateColumn({ type: "date"})
-	deleteAt: string | null;
+	deletedAt: string | null;
 
 }
