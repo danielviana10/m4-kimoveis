@@ -6,5 +6,5 @@ import { categoryCreateSchema } from "../schemas/category.schemas";
 
 export const categoryRouter: Router = Router();
 
-categoryRouter.post("", validateBody(categoryCreateSchema), middlewares.verifyToCreate, categoryController.create);
+categoryRouter.post("", middlewares.ensureTokenIsValid, middlewares.ensureTokenAdmin, validateBody(categoryCreateSchema), middlewares.verifyNameExists, categoryController.create);
 categoryRouter.get("", categoryController.read)
