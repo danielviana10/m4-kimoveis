@@ -7,17 +7,16 @@ import { userRepo } from "../repositories";
 
 const session = async (payload: LoginRequest): Promise<string> => {
 
-
     const foundUser: User | null = await userRepo.findOneBy({ email: payload.email });
 
     if(!foundUser){
-        throw new AppError("Invalid credencials", 401);
+        throw new AppError("Invalid credentials", 401);
     };
 
     const matchPassword: boolean = await compare(payload.password, foundUser.password);
 
     if(!matchPassword){
-        throw new AppError("Invalid credencials", 401);
+        throw new AppError("Invalid credentials", 401);
     };
 
     const token: string = sign(
