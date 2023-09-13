@@ -4,9 +4,11 @@ import { AppError } from "../errors";
 export const ensureTokenAdmin = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
     const {decoded} = res.locals;
 
-    if(decoded.admin)
+    if(decoded.sub == req.params.id){
+        next()
+    }
+    else if(decoded.admin)
         return next()
-
     else{
         throw new AppError("Insufficient permission", 403);
     }

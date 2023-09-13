@@ -17,9 +17,9 @@ const read = async (req: Request, res: Response): Promise<Response> => {
 
 const partialUpdate = async (req: Request, res: Response): Promise<Response> => {
     const { foundUser } = res.locals;
-    const updateuser = req.body;
+    const upDateUser = req.body;
 
-    const user: User = await userServices.partialUpdate(foundUser, updateuser)
+    const user: UserReturn = await userServices.partialUpdate(foundUser, upDateUser)
 
     return res.status(200).json(user)
 };

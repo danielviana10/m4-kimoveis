@@ -6,7 +6,7 @@ import { DeepPartial, Repository } from "typeorm";
 type UserCreate = z.infer<typeof userCreateSchema>;
 type UserRead = User[];
 type UserReturn = z.infer<typeof userReturnSchema>;
-type UserUpdate = DeepPartial<User>;
+type UserUpdate = DeepPartial<typeof userReturnSchema>;
 
 type UserRepo = Repository<User>
 

@@ -9,7 +9,7 @@ userRouter.post("", userController.create);
 
 userRouter.get("", ensureTokenIsValid, ensureTokenAdmin, userController.read);
 
-userRouter.use("/:id", ensureTokenIsValid, ensureTokenAdmin)
+userRouter.use("/:id", verifyIdExists, ensureTokenIsValid, ensureTokenAdmin)
 userRouter.patch("/:id", validateBody(userUpdateSchema), userController.partialUpdate)
 
-userRouter.delete("/:id",  verifyIdExists, userController.destroy)
+userRouter.delete("/:id", userController.destroy)

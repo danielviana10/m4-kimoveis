@@ -14,8 +14,8 @@ const read = async (): Promise<any> => {
     return userReadSchema.parse(await userRepo.find());
 };
 
-const partialUpdate = async (user: User, payload: UserUpdate): Promise<User> => {
-    return await userRepo.save({ ...user, ...payload });
+const partialUpdate = async (user: User, payload: UserUpdate): Promise<UserReturn> => {
+    return userReturnSchema.parse(await userRepo.save({ ...user, ...payload }));
 };
 
 const destroy = async (user: User): Promise<void> => {
