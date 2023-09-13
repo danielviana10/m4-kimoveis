@@ -1,13 +1,15 @@
-import { hashSync } from "bcryptjs";
-import { UserCreate, UserRead, UserReturn, UserUpdate } from "../interfaces";
+import { UserCreate, UserReturn, UserUpdate } from "../interfaces";
 import { userRepo } from "../repositories";
-import { userCreateSchema, userGetSchema, userReadSchema, userReturnSchema } from "../schemas/user.schemas";
+import { userReadSchema, userReturnSchema } from "../schemas/user.schemas";
 import { User } from "../entities/User.entity";
 
 const create = async (payload: UserCreate): Promise<UserReturn> => {
-    payload.password = hashSync(payload.password, 10)
 
-    return userReturnSchema.parse(await userRepo.save(payload))
+    const user: User = userRepo.create(payload);
+
+    await userRepo.save(user)
+
+    return userReturnSchema.parse(user)
 }
 
 const read = async (): Promise<any> => {

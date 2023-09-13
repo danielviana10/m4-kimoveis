@@ -20,7 +20,7 @@ const session = async (payload: LoginRequest): Promise<string> => {
     };
 
     const token: string = sign(
-        { email: foundUser.email, admin:foundUser.admin},
+        { admin:foundUser.admin },
         process.env.SECRET_KEY!,
         { 
             expiresIn: process.env.EXPIRES_IN,
